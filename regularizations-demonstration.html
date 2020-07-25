@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.2 Numerical demonstration | Assignments: Inference for High Dimensional Data</title>
+  <meta name="description" content="Assignment problems for the course Inference for High Dimensional Data in M.Stat 2nd year, 2019-2020, at Indian Statistical Institute, Kolkata." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.2 Numerical demonstration | Assignments: Inference for High Dimensional Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Assignment problems for the course Inference for High Dimensional Data in M.Stat 2nd year, 2019-2020, at Indian Statistical Institute, Kolkata." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.2 Numerical demonstration | Assignments: Inference for High Dimensional Data" />
+  
+  <meta name="twitter:description" content="Assignment problems for the course Inference for High Dimensional Data in M.Stat 2nd year, 2019-2020, at Indian Statistical Institute, Kolkata." />
+  
+
+<meta name="author" content="Joydeep Chowdhury" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="regularizations-description.html"/>
+<link rel="next" href="multipletesting.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Assignments: Inference for High Dimensional Data</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="regularizations.html"><a href="regularizations.html"><i class="fa fa-check"></i><b>1</b> Regularized regression</a><ul>
+<li class="chapter" data-level="1.1" data-path="regularizations-description.html"><a href="regularizations-description.html"><i class="fa fa-check"></i><b>1.1</b> Lasso and other regularizations</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="regularizations-description.html"><a href="regularizations-description.html#lasso-description"><i class="fa fa-check"></i><b>1.1.1</b> Lasso</a></li>
+<li class="chapter" data-level="1.1.2" data-path="regularizations-description.html"><a href="regularizations-description.html#ridge-description"><i class="fa fa-check"></i><b>1.1.2</b> Ridge regression</a></li>
+<li class="chapter" data-level="1.1.3" data-path="regularizations-description.html"><a href="regularizations-description.html#elasticnet-description"><i class="fa fa-check"></i><b>1.1.3</b> Elastic net</a></li>
+<li class="chapter" data-level="1.1.4" data-path="regularizations-description.html"><a href="regularizations-description.html#adaptivelasso-description"><i class="fa fa-check"></i><b>1.1.4</b> Adaptive lasso</a></li>
+<li class="chapter" data-level="1.1.5" data-path="regularizations-description.html"><a href="regularizations-description.html#grouplasso-description"><i class="fa fa-check"></i><b>1.1.5</b> Group lasso</a></li>
+<li class="chapter" data-level="1.1.6" data-path="regularizations-description.html"><a href="regularizations-description.html#fusedlasso-description"><i class="fa fa-check"></i><b>1.1.6</b> Fused lasso</a></li>
+<li class="chapter" data-level="1.1.7" data-path="regularizations-description.html"><a href="regularizations-description.html#otherregularizations-description"><i class="fa fa-check"></i><b>1.1.7</b> Other regularizations</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="regularizations-demonstration.html"><a href="regularizations-demonstration.html"><i class="fa fa-check"></i><b>1.2</b> Numerical demonstration</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="regularizations-demonstration.html"><a href="regularizations-demonstration.html#lasso-computation"><i class="fa fa-check"></i><b>1.2.1</b> Lasso computation</a></li>
+<li class="chapter" data-level="1.2.2" data-path="regularizations-demonstration.html"><a href="regularizations-demonstration.html#ridge-computation"><i class="fa fa-check"></i><b>1.2.2</b> Ridge regression computation</a></li>
+<li class="chapter" data-level="1.2.3" data-path="regularizations-demonstration.html"><a href="regularizations-demonstration.html#elasticnet-computation"><i class="fa fa-check"></i><b>1.2.3</b> Elastic net computation</a></li>
+<li class="chapter" data-level="1.2.4" data-path="regularizations-demonstration.html"><a href="regularizations-demonstration.html#adaptivelasso-computation"><i class="fa fa-check"></i><b>1.2.4</b> Adaptive lasso computation</a></li>
+<li class="chapter" data-level="1.2.5" data-path="regularizations-demonstration.html"><a href="regularizations-demonstration.html#grouplasso-computation"><i class="fa fa-check"></i><b>1.2.5</b> Group lasso computation</a></li>
+<li class="chapter" data-level="1.2.6" data-path="regularizations-demonstration.html"><a href="regularizations-demonstration.html#fusedlasso-computation"><i class="fa fa-check"></i><b>1.2.6</b> Fused lasso computation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="multipletesting.html"><a href="multipletesting.html"><i class="fa fa-check"></i><b>2</b> Multiple testing</a><ul>
+<li class="chapter" data-level="2.1" data-path="FWER.html"><a href="FWER.html"><i class="fa fa-check"></i><b>2.1</b> Controlling the familywise error rate</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="FWER.html"><a href="FWER.html#bonferroni"><i class="fa fa-check"></i><b>2.1.1</b> Bonferroni correction</a></li>
+<li class="chapter" data-level="2.1.2" data-path="FWER.html"><a href="FWER.html#holm"><i class="fa fa-check"></i><b>2.1.2</b> Holm’s method</a></li>
+<li class="chapter" data-level="2.1.3" data-path="FWER.html"><a href="FWER.html#hochberg"><i class="fa fa-check"></i><b>2.1.3</b> Hochberg’s method</a></li>
+<li class="chapter" data-level="2.1.4" data-path="FWER.html"><a href="FWER.html#hommel"><i class="fa fa-check"></i><b>2.1.4</b> Hommel’s method</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="FDR.html"><a href="FDR.html"><i class="fa fa-check"></i><b>2.2</b> False discovery rate and its control</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="FDR.html"><a href="FDR.html#BH"><i class="fa fa-check"></i><b>2.2.1</b> Benjamini-Hochberg method</a></li>
+<li class="chapter" data-level="2.2.2" data-path="FDR.html"><a href="FDR.html#BY"><i class="fa fa-check"></i><b>2.2.2</b> Benjamini–Yekutieli method</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="adjusted-pvalues.html"><a href="adjusted-pvalues.html"><i class="fa fa-check"></i><b>2.3</b> Adjusted p-values</a></li>
+<li class="chapter" data-level="2.4" data-path="multipletesting-summary.html"><a href="multipletesting-summary.html"><i class="fa fa-check"></i><b>2.4</b> Summary</a></li>
+<li class="chapter" data-level="2.5" data-path="multipletesting-demonstration.html"><a href="multipletesting-demonstration.html"><i class="fa fa-check"></i><b>2.5</b> Numerical demonstration</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="assignments.html"><a href="assignments.html"><i class="fa fa-check"></i><b>3</b> Assignments</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Assignments: Inference for High Dimensional Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regularizations-demonstration" class="section level2">
+<h2><span class="header-section-number">1.2</span> Numerical demonstration</h2>
+<p>We shall use the <code>glmnet</code> package in R for the computations related to lasso, ridge regression, elastic net and adaptive lasso. The <code>glmnet</code> package is developed by <span class="citation">Friedman et al. (<a href="#ref-R-glmnet">2020</a>)</span>.</p>
+<p>Let <span class="math inline">\(\Sigma\)</span> be a <span class="math inline">\(100 \times 100\)</span> covariance matrix defined by <span class="math inline">\(\sigma_{i j} = 0.5 + 0.5 \mathbb{I}(i = j)\)</span>. Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(100\)</span> dimensional random vector with <span class="math inline">\(X \sim N_{100}( 0, \Sigma )\)</span>. Denote the <span class="math inline">\(i\)</span>th coordinate of <span class="math inline">\(X\)</span> as <span class="math inline">\(X_i\)</span>, <span class="math inline">\(i = 1, \ldots, 100\)</span>. We consider the following regression problem: <span class="math inline">\(Y = (1 - X_1 + 2 X_2 - 3 X_3 + 4 X_4 - 5 X_5 + 6 X_6) + e\)</span>, where <span class="math inline">\(e\)</span> is an error variable independent of <span class="math inline">\(X\)</span>. We have a sample of size <span class="math inline">\(30\)</span> on <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>, based on which we shall estimate the coefficient vector using different types of regularizations.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Data generation; setting the seed for reproducible outcome</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">set.seed</span>(<span class="dv">1234</span>)</a>
+<a class="sourceLine" id="cb1-3" title="3">Mu =<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb1-4" title="4">SIGMA =<span class="st"> </span><span class="kw">matrix</span>(<span class="fl">0.5</span>, <span class="dt">nrow =</span> <span class="dv">100</span>, <span class="dt">ncol =</span> <span class="dv">100</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="st">  </span><span class="kw">diag</span>(<span class="fl">0.5</span>, <span class="dt">nrow =</span> <span class="dv">100</span>, <span class="dt">ncol =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb1-6" title="6">X =<span class="st"> </span>MASS<span class="op">::</span><span class="kw">mvrnorm</span>(<span class="dt">n =</span> <span class="dv">30</span>, <span class="dt">mu =</span> Mu, <span class="dt">Sigma =</span> SIGMA)</a>
+<a class="sourceLine" id="cb1-7" title="7">X_with_intercept =<span class="st"> </span><span class="kw">cbind</span>(<span class="dv">1</span>, X)</a>
+<a class="sourceLine" id="cb1-8" title="8">Beta =<span class="st"> </span><span class="kw">c</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">2</span>, <span class="dv">-3</span>, <span class="dv">4</span>, <span class="dv">-5</span>, <span class="dv">6</span>), <span class="kw">rep</span>(<span class="dv">0</span>, (<span class="dv">100</span> <span class="op">-</span><span class="st"> </span><span class="dv">6</span>)))</a>
+<a class="sourceLine" id="cb1-9" title="9">Y =<span class="st"> </span>X_with_intercept <span class="op">%*%</span><span class="st"> </span>Beta <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">30</span>)</a></code></pre></div>
+<p>First we need to install the package <code>glmnet</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">install.packages</span>(<span class="st">&#39;glmnet&#39;</span>)</a></code></pre></div>
+<div id="lasso-computation" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Lasso computation</h3>
+<p>We now demonstrate the lasso method on this model.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># Loading the &#39;glmnet&#39; package</span></a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw">require</span>(glmnet)</a>
+<a class="sourceLine" id="cb3-3" title="3"></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="co"># Constructing the lasso solution paths</span></a>
+<a class="sourceLine" id="cb3-5" title="5">fit_lasso =<span class="st"> </span><span class="kw">glmnet</span>(X, Y)</a></code></pre></div>
+<p>We can plot the lasso solution paths using the <code>plot</code> function. The indices of the covariate variables are written on the left side. Notice that the coefficient paths for <span class="math inline">\(X_6\)</span> and <span class="math inline">\(X_5\)</span> are the most prominent, and then comes <span class="math inline">\(X_4\)</span>. Do you understand the underlying cause?</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">plot</span>(fit_lasso, <span class="dt">xvar =</span> <span class="st">&#39;lambda&#39;</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="High-Dimensional-Data-assignments_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Using the function <code>cv.glmnet</code>, we can find the value of the cross-validated tuning parameter <span class="math inline">\(\lambda\)</span>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">cv_fit_lasso =<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y)</a></code></pre></div>
+<p>We can visually inspect the mean-squared error for different values of lambda; the two bars along the mean-squared error curve are the upper and the lower standard deviation curves.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">plot</span>(cv_fit_lasso)</a></code></pre></div>
+<p><img src="High-Dimensional-Data-assignments_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>In the plot above, we note that two specific <span class="math inline">\(\lambda\)</span> values are marked by vertical dotted lines. One of them, denoted by <code>lambda.min</code>, is the value of <span class="math inline">\(\lambda\)</span> which corresponds to the minimum cross-validated error. The other one, denoted by <code>lambda.1se</code>, is the largest value of <span class="math inline">\(\lambda\)</span> such that the corresponding cross-validated error is within one standard error of the minimum. This value of <span class="math inline">\(\lambda\)</span> corresponds to the <em>most regularized model</em> with the cross-validated error being within one standard error of the minimum cross-validated error. In case of the lasso, since with increasing <span class="math inline">\(\lambda\)</span> the number of non-zero coefficients decreases, the number of non-zero coefficients corresponding to <code>lambda.1se</code> is typically lower than that corresponding to <code>lambda.min</code>.</p>
+<p>We can access the lambda value corresponding to the minimum cross-validated error in the following way.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">lambda_min_lasso =<span class="st"> </span>cv_fit_lasso<span class="op">$</span>lambda.min</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw">writeLines</span>(<span class="kw">paste</span>(<span class="st">&#39;Cross-validated lambda for lasso:&#39;</span>,</a>
+<a class="sourceLine" id="cb7-3" title="3">                 lambda_min_lasso))</a></code></pre></div>
+<pre><code>## Cross-validated lambda for lasso: 0.370549315212255</code></pre>
+<p>We can get the coefficients of the fitted model at the cross-validated lambda in the following way.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">coefficients_lasso =<span class="st"> </span><span class="kw">coef</span>(cv_fit_lasso, <span class="dt">s =</span> <span class="st">&#39;lambda.min&#39;</span>)</a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="kw">print</span>(coefficients_lasso)</a></code></pre></div>
+<pre><code>## 101 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+##                       1
+## (Intercept)  1.80973757
+## V1           .         
+## V2           .         
+## V3           .         
+## V4           0.92449282
+## V5          -2.21218789
+## V6           3.53342728
+## V7           .         
+## V8           0.53117420
+## V9           .         
+## V10          .         
+## V11          .         
+## V12          .         
+## V13          .         
+## V14          .         
+## V15          .         
+## V16          .         
+## V17          .         
+## V18          .         
+## V19          .         
+## V20          .         
+## V21          .         
+## V22          .         
+## V23          .         
+## V24          .         
+## V25          .         
+## V26         -0.87597982
+## V27          0.06242635
+## V28          .         
+## V29          .         
+## V30          .         
+## V31          .         
+## V32         -0.17019138
+## V33          .         
+## V34          .         
+## V35          .         
+## V36          .         
+## V37          0.16030531
+## V38          .         
+## V39          .         
+## V40          .         
+## V41          .         
+## V42          .         
+## V43          .         
+## V44          .         
+## V45          .         
+## V46          .         
+## V47          0.15672602
+## V48          .         
+## V49          .         
+## V50          .         
+## V51          .         
+## V52          .         
+## V53          .         
+## V54          .         
+## V55          .         
+## V56          .         
+## V57          .         
+## V58          .         
+## V59          .         
+## V60          .         
+## V61          .         
+## V62          .         
+## V63          .         
+## V64          .         
+## V65          0.70974838
+## V66          .         
+## V67          0.49131462
+## V68          .         
+## V69         -1.01075761
+## V70         -0.27985153
+## V71          .         
+## V72          .         
+## V73          .         
+## V74          .         
+## V75          0.15711661
+## V76          .         
+## V77          .         
+## V78          .         
+## V79          .         
+## V80          .         
+## V81          .         
+## V82          .         
+## V83          .         
+## V84          .         
+## V85          0.45198207
+## V86          .         
+## V87          .         
+## V88          .         
+## V89          .         
+## V90          .         
+## V91          0.20589889
+## V92          .         
+## V93          .         
+## V94          .         
+## V95          .         
+## V96          .         
+## V97          .         
+## V98          0.06768265
+## V99          .         
+## V100         .</code></pre>
+<p>As can be seen above, the coefficients are returned in a sparse matrix format. We can convert that to the usual numeric format in the following way. Remember that the intercept term will occupy the first position in the resulting vector.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">coefficients_lasso =<span class="st"> </span><span class="kw">as.numeric</span>(coefficients_lasso)</a>
+<a class="sourceLine" id="cb11-2" title="2"></a>
+<a class="sourceLine" id="cb11-3" title="3"><span class="co"># Finding the number of zero coefficients</span></a>
+<a class="sourceLine" id="cb11-4" title="4">number_zero_coefficients_lasso =<span class="st"> </span><span class="kw">sum</span>(coefficients_lasso <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb11-5" title="5"><span class="kw">writeLines</span>(<span class="kw">paste</span>(<span class="st">&#39;Number of zero coefficients in lasso for&#39;</span>,</a>
+<a class="sourceLine" id="cb11-6" title="6">                 <span class="st">&#39;cross-validated lambda:</span><span class="ch">\n</span><span class="st">&#39;</span>,</a>
+<a class="sourceLine" id="cb11-7" title="7">                 number_zero_coefficients_lasso))</a></code></pre></div>
+<pre><code>## Number of zero coefficients in lasso for cross-validated lambda:
+##  83</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Finding which covariates have a non-zero coefficient in the</span></a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="co"># fitted model; the &#39;-1&#39; accounts for the intercept term</span></a>
+<a class="sourceLine" id="cb13-3" title="3">indices_nonzero_coefficients_lasso =</a>
+<a class="sourceLine" id="cb13-4" title="4"><span class="st">  </span><span class="kw">which</span>(coefficients_lasso <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
+<p>To get the coefficients at the value of <span class="math inline">\(\lambda\)</span> which gives the most regularized model such that the cross-validated error is within one standard error of the minimum, we use the following command.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">coefficients_lasso_most_regularized =</a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="st">  </span><span class="kw">coef</span>(cv_fit_lasso, <span class="dt">s =</span> <span class="st">&#39;lambda.1se&#39;</span>)</a>
+<a class="sourceLine" id="cb14-3" title="3">coefficients_lasso_most_regularized =</a>
+<a class="sourceLine" id="cb14-4" title="4"><span class="st">  </span><span class="kw">as.numeric</span>(coefficients_lasso_most_regularized)</a>
+<a class="sourceLine" id="cb14-5" title="5"></a>
+<a class="sourceLine" id="cb14-6" title="6"><span class="co"># Finding the number of zero coefficients</span></a>
+<a class="sourceLine" id="cb14-7" title="7">number_zero_coefficients_lasso_most_regularized =</a>
+<a class="sourceLine" id="cb14-8" title="8"><span class="st">  </span><span class="kw">sum</span>(coefficients_lasso_most_regularized <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb14-9" title="9"><span class="kw">writeLines</span>(<span class="kw">paste</span>(<span class="st">&#39;Number of zero coefficients in lasso for </span><span class="ch">\n</span><span class="st">&#39;</span>,</a>
+<a class="sourceLine" id="cb14-10" title="10">                 <span class="st">&#39;the most regularized model:&#39;</span>,</a>
+<a class="sourceLine" id="cb14-11" title="11">                 number_zero_coefficients_lasso_most_regularized))</a></code></pre></div>
+<pre><code>## Number of zero coefficients in lasso for 
+##  the most regularized model: 91</code></pre>
+<p>Note that the number of zero coefficients corresponding to <code>lambda.1se</code> is higher than that corresponding to <code>lambda.min</code>. We can find the coefficients at some other value of lambda also, in the same way.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">coefficients_lasso_s =<span class="st"> </span><span class="kw">coef</span>(cv_fit_lasso, <span class="dt">s =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="kw">print</span>(coefficients_lasso_s)</a></code></pre></div>
+<pre><code>## 101 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+##                        1
+## (Intercept)  1.767178719
+## V1           .          
+## V2           .          
+## V3           .          
+## V4           0.886211639
+## V5          -1.930076220
+## V6           3.373783767
+## V7           .          
+## V8           0.337440156
+## V9           .          
+## V10          .          
+## V11          .          
+## V12          .          
+## V13          .          
+## V14          .          
+## V15          .          
+## V16          .          
+## V17          .          
+## V18          .          
+## V19          .          
+## V20          .          
+## V21          .          
+## V22          .          
+## V23          .          
+## V24          .          
+## V25          .          
+## V26         -0.739860240
+## V27          0.173458826
+## V28          .          
+## V29          .          
+## V30          .          
+## V31          .          
+## V32         -0.099445511
+## V33          .          
+## V34          .          
+## V35          .          
+## V36          .          
+## V37          .          
+## V38          .          
+## V39          .          
+## V40          .          
+## V41          .          
+## V42          .          
+## V43          .          
+## V44          .          
+## V45          .          
+## V46          .          
+## V47          0.272255597
+## V48          .          
+## V49          .          
+## V50          .          
+## V51          .          
+## V52          .          
+## V53          .          
+## V54          .          
+## V55          .          
+## V56          .          
+## V57          .          
+## V58          .          
+## V59          .          
+## V60          .          
+## V61          .          
+## V62          .          
+## V63          .          
+## V64          .          
+## V65          0.775881117
+## V66          .          
+## V67          0.342180469
+## V68          .          
+## V69         -1.030152116
+## V70         -0.049587703
+## V71          .          
+## V72          .          
+## V73          .          
+## V74          .          
+## V75          0.136389338
+## V76          .          
+## V77          .          
+## V78          .          
+## V79          .          
+## V80          .          
+## V81          .          
+## V82          .          
+## V83          .          
+## V84          .          
+## V85          0.173826167
+## V86          .          
+## V87          .          
+## V88          .          
+## V89          .          
+## V90          .          
+## V91          0.178492348
+## V92          .          
+## V93          .          
+## V94          .          
+## V95          .          
+## V96          .          
+## V97          .          
+## V98          0.002456585
+## V99          .          
+## V100         .</code></pre>
+<p>To predict the response at some value of the covariates, we use the following command. The argument <code>newx</code> must be supplied as a matrix and not a vector.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">x_<span class="dv">0</span> =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">nrow =</span> <span class="dv">1</span>, <span class="dt">ncol =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb18-2" title="2">predicted_Y =<span class="st"> </span><span class="kw">predict</span>(cv_fit_lasso, <span class="dt">newx =</span> x_<span class="dv">0</span>, <span class="dt">s =</span> <span class="st">&#39;lambda.min&#39;</span>)</a>
+<a class="sourceLine" id="cb18-3" title="3"><span class="kw">writeLines</span>(<span class="kw">paste</span>(<span class="st">&#39;Predicted response:&#39;</span>, predicted_Y))</a></code></pre></div>
+<pre><code>## Predicted response: 7.65611533386397</code></pre>
+<p>We can predict at several sets of values of the covariates using the same command.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">x_<span class="dv">0</span>_values =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">3</span><span class="op">*</span><span class="dv">100</span>), <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb20-2" title="2"><span class="kw">predict</span>(cv_fit_lasso, <span class="dt">newx =</span> x_<span class="dv">0</span>_values, <span class="dt">s =</span> <span class="st">&#39;lambda.min&#39;</span>)</a></code></pre></div>
+<pre><code>##              1
+## [1,]  4.901129
+## [2,] -6.576428
+## [3,] 10.584152</code></pre>
+<p>We can also predict at different values of lambda.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">x_<span class="dv">0</span>_values =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">3</span><span class="op">*</span><span class="dv">100</span>), <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb22-2" title="2"><span class="kw">predict</span>(cv_fit_lasso, <span class="dt">newx =</span> x_<span class="dv">0</span>_values, <span class="dt">s =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.8</span>))</a></code></pre></div>
+<pre><code>##               1          2
+## [1,] -1.3774519 -0.5203943
+## [2,]  2.0691667  1.9047106
+## [3,] -0.5446435 -0.9182558</code></pre>
+</div>
+<div id="ridge-computation" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> Ridge regression computation</h3>
+<p>We next demonstrate the ridge regression method. The commands for the ridge regression method are identical with the lasso, except passing the value of another parameter <code>alpha = 0</code> to the <code>glmnet</code> function, which overwrites the default value of <code>alpha = 1</code>. The default value <code>alpha = 1</code> corresponds to the lasso method, and the value <code>alpha = 0</code> corresponds to ridge regression method.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="co"># Constructing the ridge regression solution paths; &#39;alpha = 0&#39;</span></a>
+<a class="sourceLine" id="cb24-2" title="2"><span class="co"># corresponds to the ridge regression method</span></a>
+<a class="sourceLine" id="cb24-3" title="3">fit_ridge =<span class="st"> </span><span class="kw">glmnet</span>(X, Y, <span class="dt">alpha =</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb24-4" title="4"></a>
+<a class="sourceLine" id="cb24-5" title="5"><span class="co"># Plotting the ridge regression solution paths</span></a>
+<a class="sourceLine" id="cb24-6" title="6"><span class="kw">plot</span>(fit_ridge, <span class="dt">xvar =</span> <span class="st">&#39;lambda&#39;</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="High-Dimensional-Data-assignments_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>Note that the coefficients do not become zero with inreasing <span class="math inline">\(\lambda\)</span>. The function ‘cv.glmnet’ with <code>alpha = 0</code> yields the value of the cross-validated <span class="math inline">\(\lambda\)</span> for the ridge regression.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="co"># &#39;alpha = 0&#39; corresponds to the ridge regression</span></a>
+<a class="sourceLine" id="cb25-2" title="2">cv_fit_ridge =<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, <span class="dt">alpha =</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb25-3" title="3"></a>
+<a class="sourceLine" id="cb25-4" title="4"><span class="co"># Plotting the mean-squared error for different values of lambda</span></a>
+<a class="sourceLine" id="cb25-5" title="5"><span class="kw">plot</span>(cv_fit_ridge)</a></code></pre></div>
+<p><img src="High-Dimensional-Data-assignments_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># Accessing the lambda value corresponding to the minimum</span></a>
+<a class="sourceLine" id="cb26-2" title="2"><span class="co"># cross-validated error</span></a>
+<a class="sourceLine" id="cb26-3" title="3">lambda_min_ridge =<span class="st"> </span>cv_fit_ridge<span class="op">$</span>lambda.min</a>
+<a class="sourceLine" id="cb26-4" title="4"><span class="kw">writeLines</span>(<span class="kw">paste</span>(<span class="st">&#39;Cross-validated lambda for ridge:&#39;</span>,</a>
+<a class="sourceLine" id="cb26-5" title="5">                 lambda_min_ridge))</a></code></pre></div>
+<pre><code>## Cross-validated lambda for ridge: 39.7327885666703</code></pre>
+<p>Below we obtain the coefficients of the fitted ridge regression model at the cross-validated lambda.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">coefficients_ridge =<span class="st"> </span><span class="kw">coef</span>(cv_fit_ridge, <span class="dt">s =</span> <span class="st">&#39;lambda.min&#39;</span>)</a>
+<a class="sourceLine" id="cb28-2" title="2"><span class="kw">print</span>(coefficients_ridge)</a></code></pre></div>
+<pre><code>## 101 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+##                         1
+## (Intercept)  1.7109491790
+## V1          -0.1083085248
+## V2           0.0289382846
+## V3           0.0874521462
+## V4           0.1351638778
+## V5          -0.1791263697
+## V6           0.2630018834
+## V7          -0.0811946853
+## V8           0.0953859518
+## V9          -0.0567241486
+## V10         -0.0092322108
+## V11          0.0237973433
+## V12          0.0023652437
+## V13          0.0627102050
+## V14          0.0407541257
+## V15          0.0643875969
+## V16         -0.0029789548
+## V17          0.0239322365
+## V18          0.1584882587
+## V19          0.0775910313
+## V20          0.0384100813
+## V21          0.0988288388
+## V22         -0.0006264409
+## V23         -0.0435152900
+## V24         -0.0218175822
+## V25          0.1393288850
+## V26         -0.2674413045
+## V27          0.1901822549
+## V28          0.0189121326
+## V29          0.0622712797
+## V30         -0.1391918705
+## V31         -0.0019822390
+## V32         -0.1603607166
+## V33          0.0386014016
+## V34         -0.0175624311
+## V35          0.0396806824
+## V36         -0.0358246172
+## V37          0.0910033959
+## V38          0.0600965337
+## V39          0.0374900113
+## V40          0.0471962575
+## V41         -0.1057321976
+## V42          0.1279890563
+## V43          0.0769178360
+## V44          0.0532354797
+## V45          0.0255123295
+## V46          0.0874539651
+## V47          0.1761787139
+## V48         -0.0050762765
+## V49          0.0596021880
+## V50          0.1263894976
+## V51         -0.1577883642
+## V52         -0.0553016593
+## V53          0.0495713021
+## V54         -0.0152558775
+## V55         -0.1817212663
+## V56          0.1037481506
+## V57          0.1107477308
+## V58          0.0905209790
+## V59          0.0279373188
+## V60          0.1140120007
+## V61          0.1060607717
+## V62         -0.0543002730
+## V63         -0.0646601361
+## V64          0.0535504252
+## V65          0.2259343778
+## V66         -0.0119965274
+## V67          0.1153978110
+## V68          0.1839346141
+## V69         -0.2130429873
+## V70         -0.1881321509
+## V71          0.0064749093
+## V72          0.1286295451
+## V73          0.0595155003
+## V74          0.0307595428
+## V75          0.1139984619
+## V76          0.0322028103
+## V77         -0.0374223741
+## V78         -0.0721740254
+## V79          0.0112816651
+## V80         -0.0009252484
+## V81          0.0326936742
+## V82          0.0665158297
+## V83          0.0296031295
+## V84          0.0204508045
+## V85          0.1315162057
+## V86          0.0545900253
+## V87          0.0408206632
+## V88          0.0112714252
+## V89          0.1312721217
+## V90         -0.0575812929
+## V91          0.1059293353
+## V92          0.1223877045
+## V93          0.0013630864
+## V94          0.0490835634
+## V95          0.0408392873
+## V96         -0.0113738132
+## V97         -0.0997274579
+## V98          0.0990380908
+## V99          0.0497533756
+## V100         0.1000894667</code></pre>
+<p>Note that the coefficients are nonzero unlike the lasso. In case of the ridge regression, the value <code>lambda.1se</code> is not so interesting as in case of the lasso, as here there is no question of reducing any coefficient to zero.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">coefficients_ridge =<span class="st"> </span><span class="kw">as.numeric</span>(coefficients_ridge)</a>
+<a class="sourceLine" id="cb30-2" title="2"></a>
+<a class="sourceLine" id="cb30-3" title="3"><span class="co"># Finding the number of nonzero coefficients; the &#39;-1&#39; accounts</span></a>
+<a class="sourceLine" id="cb30-4" title="4"><span class="co"># for the intercept term</span></a>
+<a class="sourceLine" id="cb30-5" title="5">number_nonzero_coefficients_ridge =</a>
+<a class="sourceLine" id="cb30-6" title="6"><span class="st">  </span><span class="kw">sum</span>(coefficients_ridge <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb30-7" title="7"><span class="kw">writeLines</span>(<span class="kw">paste</span>(<span class="st">&#39;Number of nonzero coefficients for&#39;</span>,</a>
+<a class="sourceLine" id="cb30-8" title="8">                 <span class="st">&#39;the ridge regression:</span><span class="ch">\n</span><span class="st">&#39;</span>,</a>
+<a class="sourceLine" id="cb30-9" title="9">                 number_nonzero_coefficients_ridge))</a></code></pre></div>
+<pre><code>## Number of nonzero coefficients for the ridge regression:
+##  100</code></pre>
+<p>Finding the coefficients at some other value of lambda is the same as in the case of the lasso.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">coefficients_ridge_s =<span class="st"> </span><span class="kw">coef</span>(cv_fit_ridge, <span class="dt">s =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb32-2" title="2"><span class="kw">print</span>(coefficients_ridge_s)</a></code></pre></div>
+<pre><code>## 101 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+##                         1
+## (Intercept)  1.7109491790
+## V1          -0.1083085248
+## V2           0.0289382846
+## V3           0.0874521462
+## V4           0.1351638778
+## V5          -0.1791263697
+## V6           0.2630018834
+## V7          -0.0811946853
+## V8           0.0953859518
+## V9          -0.0567241486
+## V10         -0.0092322108
+## V11          0.0237973433
+## V12          0.0023652437
+## V13          0.0627102050
+## V14          0.0407541257
+## V15          0.0643875969
+## V16         -0.0029789548
+## V17          0.0239322365
+## V18          0.1584882587
+## V19          0.0775910313
+## V20          0.0384100813
+## V21          0.0988288388
+## V22         -0.0006264409
+## V23         -0.0435152900
+## V24         -0.0218175822
+## V25          0.1393288850
+## V26         -0.2674413045
+## V27          0.1901822549
+## V28          0.0189121326
+## V29          0.0622712797
+## V30         -0.1391918705
+## V31         -0.0019822390
+## V32         -0.1603607166
+## V33          0.0386014016
+## V34         -0.0175624311
+## V35          0.0396806824
+## V36         -0.0358246172
+## V37          0.0910033959
+## V38          0.0600965337
+## V39          0.0374900113
+## V40          0.0471962575
+## V41         -0.1057321976
+## V42          0.1279890563
+## V43          0.0769178360
+## V44          0.0532354797
+## V45          0.0255123295
+## V46          0.0874539651
+## V47          0.1761787139
+## V48         -0.0050762765
+## V49          0.0596021880
+## V50          0.1263894976
+## V51         -0.1577883642
+## V52         -0.0553016593
+## V53          0.0495713021
+## V54         -0.0152558775
+## V55         -0.1817212663
+## V56          0.1037481506
+## V57          0.1107477308
+## V58          0.0905209790
+## V59          0.0279373188
+## V60          0.1140120007
+## V61          0.1060607717
+## V62         -0.0543002730
+## V63         -0.0646601361
+## V64          0.0535504252
+## V65          0.2259343778
+## V66         -0.0119965274
+## V67          0.1153978110
+## V68          0.1839346141
+## V69         -0.2130429873
+## V70         -0.1881321509
+## V71          0.0064749093
+## V72          0.1286295451
+## V73          0.0595155003
+## V74          0.0307595428
+## V75          0.1139984619
+## V76          0.0322028103
+## V77         -0.0374223741
+## V78         -0.0721740254
+## V79          0.0112816651
+## V80         -0.0009252484
+## V81          0.0326936742
+## V82          0.0665158297
+## V83          0.0296031295
+## V84          0.0204508045
+## V85          0.1315162057
+## V86          0.0545900253
+## V87          0.0408206632
+## V88          0.0112714252
+## V89          0.1312721217
+## V90         -0.0575812929
+## V91          0.1059293353
+## V92          0.1223877045
+## V93          0.0013630864
+## V94          0.0490835634
+## V95          0.0408392873
+## V96         -0.0113738132
+## V97         -0.0997274579
+## V98          0.0990380908
+## V99          0.0497533756
+## V100         0.1000894667</code></pre>
+<p>We can also predict at several sets of values of the covariates and at different values of lambda for the fitted ridge regression model. The argument <code>newx</code> always must be a matrix, even if we are predicting at only one set of values of the covariates.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">x_<span class="dv">0</span>_values =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">3</span><span class="op">*</span><span class="dv">100</span>), <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb34-2" title="2"><span class="kw">predict</span>(cv_fit_ridge, <span class="dt">newx =</span> x_<span class="dv">0</span>_values, <span class="dt">s =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.8</span>))</a></code></pre></div>
+<pre><code>##              1         2
+## [1,] 2.2248989 2.2248989
+## [2,] 2.5238977 2.5238977
+## [3,] 0.3758271 0.3758271</code></pre>
+</div>
+<div id="elasticnet-computation" class="section level3">
+<h3><span class="header-section-number">1.2.3</span> Elastic net computation</h3>
+<p>From the description of the elastic net in subsection <a href="regularizations-description.html#elasticnet-description">1.1.3</a>, and the codes for computing the lasso and the ridge regression solutions in subsection <a href="regularizations-demonstration.html#lasso-computation">1.2.1</a> and subsection <a href="regularizations-demonstration.html#ridge-computation">1.2.2</a> respectively, you might have guessed that the function <code>glmnet</code> actually computed the elastic net solutions for different values of the parameter <span class="math inline">\(\alpha\)</span>: <span class="math inline">\(\alpha = 1\)</span> corresponds to the lasso and <span class="math inline">\(\alpha = 0\)</span> corresponds to the ridge regression method. So, the same code with a value of the argument <code>alpha</code> in <span class="math inline">\((0, 1)\)</span> will return the elastic net solution for that value of <span class="math inline">\(\alpha\)</span>. Below, we demonstrate the computation for <span class="math inline">\(\alpha = 0.5\)</span>.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="co"># Constructing the elastic net solution paths for &#39;alpha = 0.5&#39;</span></a>
+<a class="sourceLine" id="cb36-2" title="2">fit_elnet =<span class="st"> </span><span class="kw">glmnet</span>(X, Y, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb36-3" title="3"></a>
+<a class="sourceLine" id="cb36-4" title="4"><span class="co"># Plotting the elastic net solution paths</span></a>
+<a class="sourceLine" id="cb36-5" title="5"><span class="kw">plot</span>(fit_elnet, <span class="dt">xvar =</span> <span class="st">&#39;lambda&#39;</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="High-Dimensional-Data-assignments_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>Note that the coefficients become zero with inreasing <span class="math inline">\(\lambda\)</span> like in the case of the lasso.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="co"># Cross-validation for elastic net with &#39;alpha = 0.5&#39;</span></a>
+<a class="sourceLine" id="cb37-2" title="2">cv_fit_elnet =<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb37-3" title="3"></a>
+<a class="sourceLine" id="cb37-4" title="4"><span class="co"># Plotting the mean-squared error for different values of lambda</span></a>
+<a class="sourceLine" id="cb37-5" title="5"><span class="kw">plot</span>(cv_fit_elnet)</a></code></pre></div>
+<p><img src="High-Dimensional-Data-assignments_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="co"># Accessing the lambda value corresponding to the minimum</span></a>
+<a class="sourceLine" id="cb38-2" title="2"><span class="co"># cross-validated error</span></a>
+<a class="sourceLine" id="cb38-3" title="3">lambda_min_elnet =<span class="st"> </span>cv_fit_elnet<span class="op">$</span>lambda.min</a>
+<a class="sourceLine" id="cb38-4" title="4"><span class="kw">writeLines</span>(<span class="kw">paste</span>(<span class="st">&#39;Cross-validated lambda for elastic net:&#39;</span>,</a>
+<a class="sourceLine" id="cb38-5" title="5">                 lambda_min_elnet))</a></code></pre></div>
+<pre><code>## Cross-validated lambda for elastic net: 0.424083883733463</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># Coefficients of the fitted elastic net at the cross-validated</span></a>
+<a class="sourceLine" id="cb40-2" title="2"><span class="co"># lambda</span></a>
+<a class="sourceLine" id="cb40-3" title="3">coefficients_elnet =<span class="st"> </span><span class="kw">coef</span>(cv_fit_elnet, <span class="dt">s =</span> <span class="st">&#39;lambda.min&#39;</span>)</a>
+<a class="sourceLine" id="cb40-4" title="4"><span class="kw">print</span>(coefficients_elnet)</a></code></pre></div>
+<pre><code>## 101 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+##                       1
+## (Intercept)  2.11279990
+## V1          -0.15092287
+## V2           .         
+## V3           .         
+## V4           0.82409055
+## V5          -1.50317945
+## V6           2.59241473
+## V7           .         
+## V8           0.21545204
+## V9           .         
+## V10          .         
+## V11          .         
+## V12          .         
+## V13          .         
+## V14          .         
+## V15          0.02007609
+## V16          .         
+## V17          .         
+## V18          .         
+## V19          .         
+## V20          .         
+## V21          .         
+## V22          .         
+## V23          .         
+## V24          .         
+## V25          .         
+## V26         -0.98502236
+## V27          0.54189086
+## V28          .         
+## V29          .         
+## V30         -0.30190044
+## V31          .         
+## V32         -0.51413064
+## V33          .         
+## V34          .         
+## V35          .         
+## V36          .         
+## V37          0.42556645
+## V38          .         
+## V39          .         
+## V40          .         
+## V41         -0.25103694
+## V42          .         
+## V43          .         
+## V44          .         
+## V45          .         
+## V46          .         
+## V47          0.42890488
+## V48          .         
+## V49          .         
+## V50          .         
+## V51         -0.11850576
+## V52          .         
+## V53          .         
+## V54          .         
+## V55         -0.46259584
+## V56          .         
+## V57          .         
+## V58          .         
+## V59          .         
+## V60          .         
+## V61          .         
+## V62          .         
+## V63          .         
+## V64          .         
+## V65          1.11118958
+## V66          .         
+## V67          0.60206411
+## V68          .         
+## V69         -1.07119524
+## V70         -0.70044278
+## V71          .         
+## V72          0.09785610
+## V73          .         
+## V74          .         
+## V75          0.31266992
+## V76          .         
+## V77          .         
+## V78          .         
+## V79          .         
+## V80          .         
+## V81          .         
+## V82          .         
+## V83          .         
+## V84          .         
+## V85          0.51997636
+## V86          .         
+## V87          .         
+## V88          .         
+## V89          0.15174385
+## V90         -0.07005343
+## V91          0.60397991
+## V92          .         
+## V93          .         
+## V94          .         
+## V95          .         
+## V96          .         
+## V97          .         
+## V98          .         
+## V99          .         
+## V100         .</code></pre>
+<p>Note that many of the coefficients are zero like the lasso. However, the number of zero coefficients is lower than the lasso.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">coefficients_elnet =<span class="st"> </span><span class="kw">as.numeric</span>(coefficients_elnet)</a>
+<a class="sourceLine" id="cb42-2" title="2"></a>
+<a class="sourceLine" id="cb42-3" title="3"><span class="co"># Finding the number of nonzero coefficients; the &#39;-1&#39; accounts</span></a>
+<a class="sourceLine" id="cb42-4" title="4"><span class="co"># for the intercept term</span></a>
+<a class="sourceLine" id="cb42-5" title="5">number_nonzero_coefficients_elnet =</a>
+<a class="sourceLine" id="cb42-6" title="6"><span class="st">  </span><span class="kw">sum</span>(coefficients_elnet <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb42-7" title="7"><span class="kw">writeLines</span>(<span class="kw">paste</span>(<span class="st">&#39;Number of nonzero coefficients for&#39;</span>,</a>
+<a class="sourceLine" id="cb42-8" title="8">                 <span class="st">&#39;the elastic net:&#39;</span>,</a>
+<a class="sourceLine" id="cb42-9" title="9">                 number_nonzero_coefficients_elnet))</a></code></pre></div>
+<pre><code>## Number of nonzero coefficients for the elastic net: 25</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="co"># Computing the coefficients at some other value of lambda</span></a>
+<a class="sourceLine" id="cb44-2" title="2">coefficients_elnet_s =<span class="st"> </span><span class="kw">coef</span>(cv_fit_elnet, <span class="dt">s =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb44-3" title="3"><span class="kw">print</span>(coefficients_elnet_s)</a></code></pre></div>
+<pre><code>## 101 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+##                       1
+## (Intercept)  2.04051028
+## V1          -0.09756072
+## V2           .         
+## V3           .         
+## V4           0.75068788
+## V5          -1.49223014
+## V6           2.58752206
+## V7           .         
+## V8           0.18902712
+## V9           .         
+## V10          .         
+## V11          .         
+## V12          .         
+## V13          .         
+## V14          .         
+## V15          .         
+## V16          .         
+## V17          .         
+## V18          .         
+## V19          .         
+## V20          .         
+## V21          .         
+## V22          .         
+## V23          .         
+## V24          .         
+## V25          .         
+## V26         -0.95807495
+## V27          0.53735119
+## V28          .         
+## V29          .         
+## V30         -0.23907252
+## V31          .         
+## V32         -0.51110747
+## V33          .         
+## V34          .         
+## V35          .         
+## V36          .         
+## V37          0.39406628
+## V38          .         
+## V39          .         
+## V40          .         
+## V41         -0.12997961
+## V42          .         
+## V43          .         
+## V44          .         
+## V45          .         
+## V46          .         
+## V47          0.44055872
+## V48          .         
+## V49          .         
+## V50          .         
+## V51         -0.09072844
+## V52          .         
+## V53          .         
+## V54          .         
+## V55         -0.39664432
+## V56          .         
+## V57          .         
+## V58          .         
+## V59          .         
+## V60          .         
+## V61          .         
+## V62          .         
+## V63          .         
+## V64          .         
+## V65          1.08905420
+## V66          .         
+## V67          0.61168096
+## V68          .         
+## V69         -1.12571292
+## V70         -0.63958967
+## V71          .         
+## V72          0.11705065
+## V73          .         
+## V74          .         
+## V75          0.27052397
+## V76          .         
+## V77          .         
+## V78          .         
+## V79          .         
+## V80          .         
+## V81          .         
+## V82          .         
+## V83          .         
+## V84          .         
+## V85          0.43965564
+## V86          .         
+## V87          .         
+## V88          .         
+## V89          0.09232706
+## V90         -0.01848038
+## V91          0.56203662
+## V92          .         
+## V93          .         
+## V94          .         
+## V95          .         
+## V96          .         
+## V97          .         
+## V98          .         
+## V99          .         
+## V100         .</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="co"># Predicting at several sets of values of the covariates and at</span></a>
+<a class="sourceLine" id="cb46-2" title="2"><span class="co"># different values of lambda for the fitted elastic net</span></a>
+<a class="sourceLine" id="cb46-3" title="3">x_<span class="dv">0</span>_values =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">3</span><span class="op">*</span><span class="dv">100</span>), <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb46-4" title="4"><span class="kw">predict</span>(cv_fit_elnet, <span class="dt">newx =</span> x_<span class="dv">0</span>_values, <span class="dt">s =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.8</span>))</a></code></pre></div>
+<pre><code>##              1         2
+## [1,] -6.386536 -4.828346
+## [2,]  3.403320  2.583454
+## [3,] -3.042642 -3.058112</code></pre>
+</div>
+<div id="adaptivelasso-computation" class="section level3">
+<h3><span class="header-section-number">1.2.4</span> Adaptive lasso computation</h3>
+<p>Recall the description of the adaptive lasso method in subsection <a href="regularizations-description.html#adaptivelasso-description">1.1.4</a>. We shall demonstrate the adaptive lasso with <span class="math inline">\(\gamma = 1\)</span> taking the usual cross-validated lasso solution as the initial estimate.</p>
+<p>First we compute the cross-validated lasso solution.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co"># Computing the coefficient for the cross-validated lasso estimate</span></a>
+<a class="sourceLine" id="cb48-2" title="2">cv_fit_lasso =<span class="st"> </span><span class="kw">cv.glmnet</span>(X, Y)</a>
+<a class="sourceLine" id="cb48-3" title="3">coefficients_lasso =<span class="st"> </span><span class="kw">coef</span>(cv_fit_lasso, <span class="dt">s =</span> <span class="st">&#39;lambda.min&#39;</span>)</a>
+<a class="sourceLine" id="cb48-4" title="4"></a>
+<a class="sourceLine" id="cb48-5" title="5"><span class="co"># Dropping the intercept term in the cross-validated lasso</span></a>
+<a class="sourceLine" id="cb48-6" title="6"><span class="co"># estimate</span></a>
+<a class="sourceLine" id="cb48-7" title="7">coefficients_lasso =<span class="st"> </span><span class="kw">as.numeric</span>(coefficients_lasso)[<span class="op">-</span><span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb48-8" title="8"></a>
+<a class="sourceLine" id="cb48-9" title="9"><span class="co"># Computing the adaptive lasso estimate. The argument</span></a>
+<a class="sourceLine" id="cb48-10" title="10"><span class="co"># &#39;penalty.factor&#39; assigns weights to the coefficients, with the</span></a>
+<a class="sourceLine" id="cb48-11" title="11"><span class="co"># convention of r / 0 = Infinity for r &gt; 0.</span></a>
+<a class="sourceLine" id="cb48-12" title="12">cv_fit_adaptive =</a>
+<a class="sourceLine" id="cb48-13" title="13"><span class="st">  </span><span class="kw">cv.glmnet</span>(X, Y, <span class="dt">penalty.factor =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="kw">abs</span>(coefficients_lasso))</a>
+<a class="sourceLine" id="cb48-14" title="14">coefficients_adaptive =<span class="st"> </span><span class="kw">coef</span>(cv_fit_adaptive, <span class="dt">s =</span> <span class="st">&#39;lambda.min&#39;</span>)</a>
+<a class="sourceLine" id="cb48-15" title="15"></a>
+<a class="sourceLine" id="cb48-16" title="16"><span class="co"># Dropping the intercept term for the adaptive lasso estimate</span></a>
+<a class="sourceLine" id="cb48-17" title="17">coefficients_adaptive =<span class="st"> </span><span class="kw">as.numeric</span>(coefficients_adaptive)[<span class="op">-</span><span class="dv">1</span>]</a></code></pre></div>
+<p>Recall from subsection <a href="regularizations-description.html#adaptivelasso-description">1.1.4</a> that the adaptive lasso estimate is sparser than the lasso estimate. From the construction of our simulation setup, we know that only the coefficients of <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, <span class="math inline">\(X_3\)</span>, <span class="math inline">\(X_4\)</span>, <span class="math inline">\(X_5\)</span> and <span class="math inline">\(X_6\)</span> are nonzero in the underlying model. Let us see the indices of the covariates with nonzero coefficients in the lasso estimate and the adaptive lasso estimate.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="kw">writeLines</span>(<span class="kw">paste</span>(<span class="st">&#39;Indices of the covariates with nonzero&#39;</span>,</a>
+<a class="sourceLine" id="cb49-2" title="2">                 <span class="st">&#39;coefficients </span><span class="ch">\n</span><span class="st"> for the lasso estimate:</span><span class="ch">\n</span><span class="st">&#39;</span>,</a>
+<a class="sourceLine" id="cb49-3" title="3">                 <span class="kw">paste</span>(<span class="kw">which</span>(coefficients_lasso <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb49-4" title="4">                       <span class="dt">collapse =</span> <span class="st">&#39; &#39;</span>)))</a></code></pre></div>
+<pre><code>## Indices of the covariates with nonzero coefficients 
+##  for the lasso estimate:
+##  4 5 6 8 26 27 32 37 47 65 67 69 70 75 85 91 98</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="kw">writeLines</span>(<span class="kw">paste</span>(<span class="st">&#39;Indices of the covariates with nonzero&#39;</span>,</a>
+<a class="sourceLine" id="cb51-2" title="2">                 <span class="st">&#39;coefficients </span><span class="ch">\n</span><span class="st"> for the adaptive lasso&#39;</span>,</a>
+<a class="sourceLine" id="cb51-3" title="3">                 <span class="st">&#39;estimate:</span><span class="ch">\n</span><span class="st">&#39;</span>,</a>
+<a class="sourceLine" id="cb51-4" title="4">                 <span class="kw">paste</span>(<span class="kw">which</span>(coefficients_adaptive <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb51-5" title="5">                       <span class="dt">collapse =</span> <span class="st">&#39; &#39;</span>)))</a></code></pre></div>
+<pre><code>## Indices of the covariates with nonzero coefficients 
+##  for the adaptive lasso estimate:
+##  4 5 6 8 26 65 67 69 85</code></pre>
+<p>We note that the lasso estimate has 17 nonzero coordinates, while the adaptive lasso has 9 nonzero coordinates. So, the adaptive lasso estimate is indeed sparser than the lasso estimate. However, both of them erroneously estimate several zero coefficients as nonzero, and fail to capture several nonzero coefficients.</p>
+</div>
+<div id="grouplasso-computation" class="section level3">
+<h3><span class="header-section-number">1.2.5</span> Group lasso computation</h3>
+<p>For the group lasso computation, we shall use the <code>gglasso</code> package by <span class="citation">Yang, Zou, and Bhatnagar (<a href="#ref-R-gglasso">2020</a>)</span>. We shall use the same simulation setup, but the covariates will be divided in groups in the following way: <span class="math inline">\(X_1, \ldots, X_5\)</span> in the first group, <span class="math inline">\(X_6, \ldots, X_10\)</span> in the second group, and so on. We form the group indices below, which will be required.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">group_indices =<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb53-2" title="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb53-3" title="3">  group_indices =<span class="st"> </span><span class="kw">c</span>(group_indices, <span class="kw">rep</span>(i, <span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb53-4" title="4"><span class="kw">writeLines</span>(<span class="st">&#39;First 20 group indices are:&#39;</span>)</a></code></pre></div>
+<pre><code>## First 20 group indices are:</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">print</span>(group_indices[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>])</a></code></pre></div>
+<pre><code>##  [1] 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4</code></pre>
+<p>The following command installs the package <code>gglasso</code>.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="kw">install.packages</span>(<span class="st">&#39;gglasso&#39;</span>)</a></code></pre></div>
+<p>We now demonstrate the computation for the group lasso method. The commands are very similar to those in <code>glmnet</code>.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co"># Loading the &#39;gglasso&#39; package</span></a>
+<a class="sourceLine" id="cb58-2" title="2"><span class="kw">require</span>(gglasso)</a>
+<a class="sourceLine" id="cb58-3" title="3"></a>
+<a class="sourceLine" id="cb58-4" title="4"><span class="co"># Constructing the group lasso solution paths</span></a>
+<a class="sourceLine" id="cb58-5" title="5">fit_group =<span class="st"> </span><span class="kw">gglasso</span>(X, Y, <span class="dt">group =</span> group_indices)</a>
+<a class="sourceLine" id="cb58-6" title="6"></a>
+<a class="sourceLine" id="cb58-7" title="7"><span class="co"># Plotting the ridge regression solution paths; the</span></a>
+<a class="sourceLine" id="cb58-8" title="8"><span class="co"># &#39;label&#39; argument does not work here, unfortunately.</span></a>
+<a class="sourceLine" id="cb58-9" title="9"><span class="kw">plot</span>(fit_group, <span class="dt">xvar =</span> <span class="st">&#39;lambda&#39;</span>)</a></code></pre></div>
+<p><img src="High-Dimensional-Data-assignments_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="co"># Cross-validation for group lasso; &#39;nfolds&#39; is a</span></a>
+<a class="sourceLine" id="cb59-2" title="2"><span class="co"># cross-validation parameter whose default value</span></a>
+<a class="sourceLine" id="cb59-3" title="3"><span class="co"># was 10 in our earlier calculations using the &#39;glmnet&#39;</span></a>
+<a class="sourceLine" id="cb59-4" title="4"><span class="co"># package. Since its default parameter for the &#39;gglasso&#39;</span></a>
+<a class="sourceLine" id="cb59-5" title="5"><span class="co"># package is different, we set that explicitly to 10</span></a>
+<a class="sourceLine" id="cb59-6" title="6"><span class="co"># here to maintain uniformity.</span></a>
+<a class="sourceLine" id="cb59-7" title="7">cv_fit_group =<span class="st"> </span><span class="kw">cv.gglasso</span>(X, Y, <span class="dt">group =</span> group_indices,</a>
+<a class="sourceLine" id="cb59-8" title="8">                          <span class="dt">nfolds =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb59-9" title="9"></a>
+<a class="sourceLine" id="cb59-10" title="10"><span class="co"># Plotting the mean-squared error for different values of</span></a>
+<a class="sourceLine" id="cb59-11" title="11"><span class="co"># lambda in the group lasso cross-validation</span></a>
+<a class="sourceLine" id="cb59-12" title="12"><span class="kw">plot</span>(cv_fit_group)</a></code></pre></div>
+<p><img src="High-Dimensional-Data-assignments_files/figure-html/unnamed-chunk-29-2.png" width="672" /></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="co"># Getting the lambda value corresponding to the minimum</span></a>
+<a class="sourceLine" id="cb60-2" title="2"><span class="co"># cross-validated error in the group lasso</span></a>
+<a class="sourceLine" id="cb60-3" title="3">lambda_min_group =<span class="st"> </span>cv_fit_group<span class="op">$</span>lambda.min</a>
+<a class="sourceLine" id="cb60-4" title="4"><span class="kw">writeLines</span>(<span class="kw">paste</span>(<span class="st">&#39;Cross-validated lambda for group lasso:&#39;</span>,</a>
+<a class="sourceLine" id="cb60-5" title="5">                 lambda_min_group))</a></code></pre></div>
+<pre><code>## Cross-validated lambda for group lasso: 0.111996927450172</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="co"># Coefficients of the fitted group lasso at the</span></a>
+<a class="sourceLine" id="cb62-2" title="2"><span class="co"># cross-validated lambda</span></a>
+<a class="sourceLine" id="cb62-3" title="3">coefficients_group =<span class="st"> </span><span class="kw">coef</span>(cv_fit_group, <span class="dt">s =</span> <span class="st">&#39;lambda.min&#39;</span>)</a>
+<a class="sourceLine" id="cb62-4" title="4"><span class="kw">print</span>(coefficients_group)</a></code></pre></div>
+<pre><code>##                        1
+## (Intercept)  2.299964945
+## V1          -0.597276460
+## V2           0.532650084
+## V3          -0.341296086
+## V4           1.324008186
+## V5          -2.620777857
+## V6           3.520635169
+## V7          -0.205739578
+## V8           0.919717629
+## V9          -1.158546608
+## V10         -0.115243566
+## V11          0.000000000
+## V12          0.000000000
+## V13          0.000000000
+## V14          0.000000000
+## V15          0.000000000
+## V16          0.000000000
+## V17          0.000000000
+## V18          0.000000000
+## V19          0.000000000
+## V20          0.000000000
+## V21          0.000000000
+## V22          0.000000000
+## V23          0.000000000
+## V24          0.000000000
+## V25          0.000000000
+## V26         -0.843269703
+## V27          0.454718935
+## V28         -0.139688699
+## V29          0.198558378
+## V30         -0.245208698
+## V31          0.000000000
+## V32          0.000000000
+## V33          0.000000000
+## V34          0.000000000
+## V35          0.000000000
+## V36          0.000000000
+## V37          0.000000000
+## V38          0.000000000
+## V39          0.000000000
+## V40          0.000000000
+## V41          0.000000000
+## V42          0.000000000
+## V43          0.000000000
+## V44          0.000000000
+## V45          0.000000000
+## V46          0.049197887
+## V47          0.133784587
+## V48          0.006353655
+## V49          0.000623473
+## V50          0.051280996
+## V51          0.000000000
+## V52          0.000000000
+## V53          0.000000000
+## V54          0.000000000
+## V55          0.000000000
+## V56          0.000000000
+## V57          0.000000000
+## V58          0.000000000
+## V59          0.000000000
+## V60          0.000000000
+## V61          0.127846059
+## V62         -0.102298726
+## V63         -0.084174083
+## V64          0.140865202
+## V65          0.276307972
+## V66          0.055334287
+## V67          0.754238086
+## V68          0.215257426
+## V69         -0.700822526
+## V70         -0.602696078
+## V71          0.147769008
+## V72          0.245420916
+## V73          0.242587489
+## V74          0.126254804
+## V75          0.371727647
+## V76          0.000000000
+## V77          0.000000000
+## V78          0.000000000
+## V79          0.000000000
+## V80          0.000000000
+## V81          0.048401665
+## V82         -0.008353210
+## V83          0.140023712
+## V84          0.139982310
+## V85          0.392935904
+## V86          0.000000000
+## V87          0.000000000
+## V88          0.000000000
+## V89          0.000000000
+## V90          0.000000000
+## V91          0.000000000
+## V92          0.000000000
+## V93          0.000000000
+## V94          0.000000000
+## V95          0.000000000
+## V96          0.000000000
+## V97          0.000000000
+## V98          0.000000000
+## V99          0.000000000
+## V100         0.000000000</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1"><span class="co"># Computing the coefficients at some other value of lambda</span></a>
+<a class="sourceLine" id="cb64-2" title="2"><span class="co"># for the group lasso estimate</span></a>
+<a class="sourceLine" id="cb64-3" title="3">coefficients_group_s =<span class="st"> </span><span class="kw">coef</span>(cv_fit_group, <span class="dt">s =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb64-4" title="4"><span class="kw">print</span>(coefficients_group_s)</a></code></pre></div>
+<pre><code>##                        1
+## (Intercept)  2.446545801
+## V1          -0.164606301
+## V2           0.094789057
+## V3           0.120037112
+## V4           0.347808507
+## V5          -0.593803459
+## V6           1.804429746
+## V7          -0.246614547
+## V8           0.464199928
+## V9          -0.460855429
+## V10          0.019794050
+## V11          0.000000000
+## V12          0.000000000
+## V13          0.000000000
+## V14          0.000000000
+## V15          0.000000000
+## V16          0.000000000
+## V17          0.000000000
+## V18          0.000000000
+## V19          0.000000000
+## V20          0.000000000
+## V21          0.000000000
+## V22          0.000000000
+## V23          0.000000000
+## V24          0.000000000
+## V25          0.000000000
+## V26         -0.810113871
+## V27          0.839345222
+## V28          0.008647552
+## V29          0.261184248
+## V30         -0.190066878
+## V31          0.000000000
+## V32          0.000000000
+## V33          0.000000000
+## V34          0.000000000
+## V35          0.000000000
+## V36          0.000000000
+## V37          0.000000000
+## V38          0.000000000
+## V39          0.000000000
+## V40          0.000000000
+## V41          0.000000000
+## V42          0.000000000
+## V43          0.000000000
+## V44          0.000000000
+## V45          0.000000000
+## V46          0.007239078
+## V47          0.015033387
+## V48          0.003418754
+## V49          0.004555346
+## V50          0.010936767
+## V51          0.000000000
+## V52          0.000000000
+## V53          0.000000000
+## V54          0.000000000
+## V55          0.000000000
+## V56          0.000000000
+## V57          0.000000000
+## V58          0.000000000
+## V59          0.000000000
+## V60          0.000000000
+## V61          0.131674540
+## V62         -0.054091098
+## V63         -0.033632054
+## V64          0.092040935
+## V65          0.258461382
+## V66          0.172478602
+## V67          0.634772294
+## V68          0.494381080
+## V69         -0.917556135
+## V70         -0.647221136
+## V71          0.053041142
+## V72          0.137248090
+## V73          0.147020100
+## V74          0.094450596
+## V75          0.202158872
+## V76          0.000000000
+## V77          0.000000000
+## V78          0.000000000
+## V79          0.000000000
+## V80          0.000000000
+## V81          0.000000000
+## V82          0.000000000
+## V83          0.000000000
+## V84          0.000000000
+## V85          0.000000000
+## V86          0.000000000
+## V87          0.000000000
+## V88          0.000000000
+## V89          0.000000000
+## V90          0.000000000
+## V91          0.000000000
+## V92          0.000000000
+## V93          0.000000000
+## V94          0.000000000
+## V95          0.000000000
+## V96          0.000000000
+## V97          0.000000000
+## V98          0.000000000
+## V99          0.000000000
+## V100         0.000000000</code></pre>
+<p>Notice that the group lasso method reduces to zero all the coefficients together in any group. Next, we predict the group lasso estimate at some sets of values of the covariates.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="co"># Predicting at several sets of values of the covariates and at</span></a>
+<a class="sourceLine" id="cb66-2" title="2"><span class="co"># different values of lambda for the fitted group lasso; here</span></a>
+<a class="sourceLine" id="cb66-3" title="3"><span class="co"># &#39;type&#39; is an argument whose value &#39;link&#39; corresponds to</span></a>
+<a class="sourceLine" id="cb66-4" title="4"><span class="co"># regression prediction.</span></a>
+<a class="sourceLine" id="cb66-5" title="5">x_<span class="dv">0</span>_values =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">3</span><span class="op">*</span><span class="dv">100</span>), <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb66-6" title="6"><span class="kw">predict</span>(cv_fit_group, <span class="dt">newx =</span> x_<span class="dv">0</span>_values, <span class="dt">s =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.8</span>),</a>
+<a class="sourceLine" id="cb66-7" title="7">        <span class="dt">type =</span> <span class="st">&#39;link&#39;</span>)</a></code></pre></div>
+<pre><code>##                1          2
+## [1,]  5.10055137  4.8965983
+## [2,]  0.41015246 -0.2829483
+## [3,] -0.02520761  0.8646178</code></pre>
+</div>
+<div id="fusedlasso-computation" class="section level3">
+<h3><span class="header-section-number">1.2.6</span> Fused lasso computation</h3>
+<p>We shall demonstrate the idea of the fused lasso in a simpler model unlike the simulated regression setup used in the previous cases. Assume the response values are <span class="math inline">\(Y_i\)</span>, where <span class="math inline">\(i = 1, \ldots, n\)</span>, and <span class="math inline">\(Y_i \sim \theta_i + e_i\)</span>, where <span class="math inline">\(e_i\)</span> are independent and identically distributed <span class="math inline">\(N(0, 0.25)\)</span> random variables. Suppose the sequence <span class="math inline">\(\{\theta_i\}\)</span> is piecewise constant, such that <span class="math inline">\(\theta_1 = \ldots = \theta_{20} = 2\)</span>, <span class="math inline">\(\theta_{21} = \ldots = \theta_{30} = 3\)</span>, <span class="math inline">\(\theta_{31} = \ldots = \theta_{40} = 0\)</span>, <span class="math inline">\(\theta_{41} = \ldots = \theta_{60} = 5\)</span>, <span class="math inline">\(\theta_{61} = \ldots = \theta_{85} = 1\)</span> and <span class="math inline">\(\theta_{85} = \ldots = \theta_{100} = 0\)</span>. We want to find
+<span class="math display">\[\hat{\theta} = \arg\min_{\theta \in \mathbb{R}^n} \left[ \sum_{i=1}^n (Y_i - \theta_i)^2 + \lambda \sum_{i=1}^{n-1} | \theta_i - \theta_{i+1} | \right].\]</span>
+Below, we generate a sample from this model with <span class="math inline">\(n = 100\)</span>.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="co"># Data generation for fused lasso with fixed seed</span></a>
+<a class="sourceLine" id="cb68-2" title="2"><span class="kw">set.seed</span>(<span class="dv">1234</span>)</a>
+<a class="sourceLine" id="cb68-3" title="3">Theta =<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">20</span>), <span class="kw">rep</span>(<span class="dv">3</span>, <span class="dv">10</span>), <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">20</span>),</a>
+<a class="sourceLine" id="cb68-4" title="4">          <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">25</span>), <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">15</span>))</a>
+<a class="sourceLine" id="cb68-5" title="5">Y =<span class="st"> </span>Theta <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="kw">sqrt</span>(<span class="fl">0.25</span>))</a></code></pre></div>
+<p>We need the <code>genlasso</code> package <span class="citation">(Arnold and Tibshirani <a href="#ref-R-genlasso">2020</a>)</span> for the fused lasso computation. The following command would install this package.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="kw">install.packages</span>(<span class="st">&#39;genlasso&#39;</span>)</a></code></pre></div>
+<p>The fused lasso computation is demonstrated below.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1"><span class="co"># Loading the &#39;genlasso&#39; package</span></a>
+<a class="sourceLine" id="cb70-2" title="2"><span class="kw">require</span>(genlasso)</a>
+<a class="sourceLine" id="cb70-3" title="3"></a>
+<a class="sourceLine" id="cb70-4" title="4"><span class="co"># Constructing the fused lasso solution paths; since</span></a>
+<a class="sourceLine" id="cb70-5" title="5"><span class="co"># the coefficients here are recorded on a one dimensional</span></a>
+<a class="sourceLine" id="cb70-6" title="6"><span class="co"># grid, we use the function &#39;fusedlasso1d&#39;.</span></a>
+<a class="sourceLine" id="cb70-7" title="7">fit_fused =<span class="st"> </span><span class="kw">fusedlasso1d</span>(Y)</a>
+<a class="sourceLine" id="cb70-8" title="8"></a>
+<a class="sourceLine" id="cb70-9" title="9"><span class="co"># Plotting the fused lasso solution paths along with the</span></a>
+<a class="sourceLine" id="cb70-10" title="10"><span class="co"># actual observations; the points are the actual observations.</span></a>
+<a class="sourceLine" id="cb70-11" title="11"><span class="kw">plot</span>(fit_fused)</a></code></pre></div>
+<p><img src="High-Dimensional-Data-assignments_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p>We note that the plot here is very different from the earlier examples, due to the difference in the nature of the problems (and also the packages used).</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="co"># Cross-validation for fused lasso; &#39;k&#39; is  the</span></a>
+<a class="sourceLine" id="cb71-2" title="2"><span class="co"># cross-validation parameter corresponding to &#39;nfolds&#39; in</span></a>
+<a class="sourceLine" id="cb71-3" title="3"><span class="co"># earlier cases. Cross-validation is done using the</span></a>
+<a class="sourceLine" id="cb71-4" title="4"><span class="co"># &#39;cv.trendfilter&#39; function.</span></a>
+<a class="sourceLine" id="cb71-5" title="5">cv_fit_fused =<span class="st"> </span><span class="kw">cv.trendfilter</span>(fit_fused, <span class="dt">k =</span> <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1"><span class="co"># Plotting the mean-squared error for different values of</span></a>
+<a class="sourceLine" id="cb72-2" title="2"><span class="co"># lambda in the fused lasso cross-validation</span></a>
+<a class="sourceLine" id="cb72-3" title="3"><span class="kw">plot</span>(cv_fit_fused)</a></code></pre></div>
+<p><img src="High-Dimensional-Data-assignments_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="co"># Getting the lambda value corresponding to the minimum</span></a>
+<a class="sourceLine" id="cb73-2" title="2"><span class="co"># cross-validated error in the fused lasso</span></a>
+<a class="sourceLine" id="cb73-3" title="3">lambda_min_fused =<span class="st"> </span>cv_fit_fused<span class="op">$</span>lambda.min</a>
+<a class="sourceLine" id="cb73-4" title="4"><span class="kw">writeLines</span>(<span class="kw">paste</span>(<span class="st">&#39;Cross-validated lambda for fused lasso:&#39;</span>,</a>
+<a class="sourceLine" id="cb73-5" title="5">                 lambda_min_fused))</a></code></pre></div>
+<pre><code>## Cross-validated lambda for fused lasso: 0.67106063258858</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1"><span class="co"># Plotting the fused lasso estimate for the</span></a>
+<a class="sourceLine" id="cb75-2" title="2"><span class="co"># cross-validated lambda along with the actual observations</span></a>
+<a class="sourceLine" id="cb75-3" title="3"><span class="kw">plot</span>(fit_fused, <span class="dt">lambda =</span> lambda_min_fused,</a>
+<a class="sourceLine" id="cb75-4" title="4">     <span class="dt">main =</span> <span class="kw">paste</span>(<span class="st">&#39;Estimated coefficients for the&#39;</span>,</a>
+<a class="sourceLine" id="cb75-5" title="5">                  <span class="st">&#39;cross-validated lambda&#39;</span>))</a></code></pre></div>
+<p><img src="High-Dimensional-Data-assignments_files/figure-html/unnamed-chunk-35-2.png" width="672" /></p>
+
+</div>
+</div>
+<!-- </div> -->
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-genlasso">
+<p>Arnold, Taylor B., and Ryan J. Tibshirani. 2020. <em>Genlasso: Path Algorithm for Generalized Lasso Problems</em>. <a href="https://CRAN.R-project.org/package=genlasso">https://CRAN.R-project.org/package=genlasso</a>.</p>
+</div>
+<div id="ref-R-glmnet">
+<p>Friedman, Jerome, Trevor Hastie, Rob Tibshirani, Balasubramanian Narasimhan, Kenneth Tay, and Noah Simon. 2020. <em>Glmnet: Lasso and Elastic-Net Regularized Generalized Linear Models</em>. <a href="https://CRAN.R-project.org/package=glmnet">https://CRAN.R-project.org/package=glmnet</a>.</p>
+</div>
+<div id="ref-R-gglasso">
+<p>Yang, Yi, Hui Zou, and Sahir Bhatnagar. 2020. <em>Gglasso: Group Lasso Penalized Learning Using a Unified Bmd Algorithm</em>. <a href="https://CRAN.R-project.org/package=gglasso">https://CRAN.R-project.org/package=gglasso</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regularizations-description.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multipletesting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["High-Dimensional-Data-assignments.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

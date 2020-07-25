@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.1 Lasso and other regularizations | Assignments: Inference for High Dimensional Data</title>
+  <meta name="description" content="Assignment problems for the course Inference for High Dimensional Data in M.Stat 2nd year, 2019-2020, at Indian Statistical Institute, Kolkata." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.1 Lasso and other regularizations | Assignments: Inference for High Dimensional Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Assignment problems for the course Inference for High Dimensional Data in M.Stat 2nd year, 2019-2020, at Indian Statistical Institute, Kolkata." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.1 Lasso and other regularizations | Assignments: Inference for High Dimensional Data" />
+  
+  <meta name="twitter:description" content="Assignment problems for the course Inference for High Dimensional Data in M.Stat 2nd year, 2019-2020, at Indian Statistical Institute, Kolkata." />
+  
+
+<meta name="author" content="Joydeep Chowdhury" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="regularizations.html"/>
+<link rel="next" href="regularizations-demonstration.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Assignments: Inference for High Dimensional Data</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="regularizations.html"><a href="regularizations.html"><i class="fa fa-check"></i><b>1</b> Regularized regression</a><ul>
+<li class="chapter" data-level="1.1" data-path="regularizations-description.html"><a href="regularizations-description.html"><i class="fa fa-check"></i><b>1.1</b> Lasso and other regularizations</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="regularizations-description.html"><a href="regularizations-description.html#lasso-description"><i class="fa fa-check"></i><b>1.1.1</b> Lasso</a></li>
+<li class="chapter" data-level="1.1.2" data-path="regularizations-description.html"><a href="regularizations-description.html#ridge-description"><i class="fa fa-check"></i><b>1.1.2</b> Ridge regression</a></li>
+<li class="chapter" data-level="1.1.3" data-path="regularizations-description.html"><a href="regularizations-description.html#elasticnet-description"><i class="fa fa-check"></i><b>1.1.3</b> Elastic net</a></li>
+<li class="chapter" data-level="1.1.4" data-path="regularizations-description.html"><a href="regularizations-description.html#adaptivelasso-description"><i class="fa fa-check"></i><b>1.1.4</b> Adaptive lasso</a></li>
+<li class="chapter" data-level="1.1.5" data-path="regularizations-description.html"><a href="regularizations-description.html#grouplasso-description"><i class="fa fa-check"></i><b>1.1.5</b> Group lasso</a></li>
+<li class="chapter" data-level="1.1.6" data-path="regularizations-description.html"><a href="regularizations-description.html#fusedlasso-description"><i class="fa fa-check"></i><b>1.1.6</b> Fused lasso</a></li>
+<li class="chapter" data-level="1.1.7" data-path="regularizations-description.html"><a href="regularizations-description.html#otherregularizations-description"><i class="fa fa-check"></i><b>1.1.7</b> Other regularizations</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="regularizations-demonstration.html"><a href="regularizations-demonstration.html"><i class="fa fa-check"></i><b>1.2</b> Numerical demonstration</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="regularizations-demonstration.html"><a href="regularizations-demonstration.html#lasso-computation"><i class="fa fa-check"></i><b>1.2.1</b> Lasso computation</a></li>
+<li class="chapter" data-level="1.2.2" data-path="regularizations-demonstration.html"><a href="regularizations-demonstration.html#ridge-computation"><i class="fa fa-check"></i><b>1.2.2</b> Ridge regression computation</a></li>
+<li class="chapter" data-level="1.2.3" data-path="regularizations-demonstration.html"><a href="regularizations-demonstration.html#elasticnet-computation"><i class="fa fa-check"></i><b>1.2.3</b> Elastic net computation</a></li>
+<li class="chapter" data-level="1.2.4" data-path="regularizations-demonstration.html"><a href="regularizations-demonstration.html#adaptivelasso-computation"><i class="fa fa-check"></i><b>1.2.4</b> Adaptive lasso computation</a></li>
+<li class="chapter" data-level="1.2.5" data-path="regularizations-demonstration.html"><a href="regularizations-demonstration.html#grouplasso-computation"><i class="fa fa-check"></i><b>1.2.5</b> Group lasso computation</a></li>
+<li class="chapter" data-level="1.2.6" data-path="regularizations-demonstration.html"><a href="regularizations-demonstration.html#fusedlasso-computation"><i class="fa fa-check"></i><b>1.2.6</b> Fused lasso computation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="multipletesting.html"><a href="multipletesting.html"><i class="fa fa-check"></i><b>2</b> Multiple testing</a><ul>
+<li class="chapter" data-level="2.1" data-path="FWER.html"><a href="FWER.html"><i class="fa fa-check"></i><b>2.1</b> Controlling the familywise error rate</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="FWER.html"><a href="FWER.html#bonferroni"><i class="fa fa-check"></i><b>2.1.1</b> Bonferroni correction</a></li>
+<li class="chapter" data-level="2.1.2" data-path="FWER.html"><a href="FWER.html#holm"><i class="fa fa-check"></i><b>2.1.2</b> Holm’s method</a></li>
+<li class="chapter" data-level="2.1.3" data-path="FWER.html"><a href="FWER.html#hochberg"><i class="fa fa-check"></i><b>2.1.3</b> Hochberg’s method</a></li>
+<li class="chapter" data-level="2.1.4" data-path="FWER.html"><a href="FWER.html#hommel"><i class="fa fa-check"></i><b>2.1.4</b> Hommel’s method</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="FDR.html"><a href="FDR.html"><i class="fa fa-check"></i><b>2.2</b> False discovery rate and its control</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="FDR.html"><a href="FDR.html#BH"><i class="fa fa-check"></i><b>2.2.1</b> Benjamini-Hochberg method</a></li>
+<li class="chapter" data-level="2.2.2" data-path="FDR.html"><a href="FDR.html#BY"><i class="fa fa-check"></i><b>2.2.2</b> Benjamini–Yekutieli method</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="adjusted-pvalues.html"><a href="adjusted-pvalues.html"><i class="fa fa-check"></i><b>2.3</b> Adjusted p-values</a></li>
+<li class="chapter" data-level="2.4" data-path="multipletesting-summary.html"><a href="multipletesting-summary.html"><i class="fa fa-check"></i><b>2.4</b> Summary</a></li>
+<li class="chapter" data-level="2.5" data-path="multipletesting-demonstration.html"><a href="multipletesting-demonstration.html"><i class="fa fa-check"></i><b>2.5</b> Numerical demonstration</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="assignments.html"><a href="assignments.html"><i class="fa fa-check"></i><b>3</b> Assignments</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Assignments: Inference for High Dimensional Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regularizations-description" class="section level2">
+<h2><span class="header-section-number">1.1</span> Lasso and other regularizations</h2>
+<p>In this section, different types of regularizations and their utilities are described.</p>
+<div id="lasso-description" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> Lasso</h3>
+<p>In the lasso setup, we minimize the loss function
+<span class="math display">\[\begin{align*}
+L_{lasso}(\beta) = \frac{1}{2n} \| Y - X \beta \|^2_2 + \lambda \| \beta \|_1
+\end{align*}\]</span>
+with respect to <span class="math inline">\(\beta\)</span>. Here, <span class="math inline">\(\lambda \ge 0\)</span> is a tuning parameter. For <span class="math inline">\(\lambda = 0\)</span>, the lasso formulation reduces to the usual least squares setup. For large enough <span class="math inline">\(\lambda\)</span>, the minimizer <span class="math inline">\(\beta\)</span> is <span class="math inline">\(0\)</span>.</p>
+<p>The utility of the lasso formulation in variable selection stems from the fact that <span class="math inline">\(q = 1\)</span> is the smallest value for which the <span class="math inline">\(l_q\)</span> norm is convex. The variable selection property of <span class="math inline">\(l_q\)</span> penalized methods improves with decreasing <span class="math inline">\(q\)</span>. On the other hand, it is relatively far easier computationally to solve a convex optimization problem than a non-convex one. For example, the <span class="math inline">\(l_0\)</span> penalization is the purest form of variable selection method. However, the minimization of a <span class="math inline">\(l_0\)</span> penalized criterion is computationally very challenging.</p>
+<p>The lasso (<strong>l</strong>east <strong>a</strong>bsolute <strong>s</strong>hrinkage and <strong>s</strong>election <strong>o</strong>perator) method was proposed by <span class="citation">Tibshirani (<a href="#ref-tibshirani1996regression">1996</a>)</span>.</p>
+<p>During numerical computations, the tuning parameter <span class="math inline">\(\lambda\)</span> is selected using cross validation.</p>
+<p>Usually, before computing the lasso estimate, the response as well as the covariates are centered so that average of <span class="math inline">\(Y\)</span> and the averages of the columns of <span class="math inline">\(X\)</span> are all equal to <span class="math inline">\(0\)</span>. This justifies the omission of the intercept term in the linear regression model (i.e., omission of <span class="math inline">\(\beta_0\)</span> in the model <span class="math inline">\(Y = \beta_0 1 + X \beta\)</span>). It is easy to recover the coefficeints for the uncentered case from those for the centerd case. In case the covariates are recorded in different units, additionally we may also standardize them so that <span class="math inline">\(X_{\cdot i}&#39; X_{\cdot i} = 1\)</span> for all <span class="math inline">\(j\)</span>, where <span class="math inline">\(X_{\cdot i}\)</span> is the <span class="math inline">\(i\)</span>th column of <span class="math inline">\(X\)</span>. This makes the model free of the effect of the units of the covariates.</p>
+</div>
+<div id="ridge-description" class="section level3">
+<h3><span class="header-section-number">1.1.2</span> Ridge regression</h3>
+<p>In the ridge regression setup, the loss function is
+<span class="math display">\[\begin{align*}
+L_{ridge}(\beta) = \frac{1}{2n} \| Y - X \beta \|^2_2 + \frac{\lambda}{2} \| \beta \|_2^2 .
+\end{align*}\]</span>
+Here again, <span class="math inline">\(\lambda \ge 0\)</span> is a tuning parameter.</p>
+<p>Unlike the lasso, the ridge regression exhibits no variable selection property. It shrinks all the coefficients together rather than reducing some of them to 0. The ridge regression method is also known as the Tikhonov regularization, named after Andrey Tikhonov <span class="citation">(Tikhonov <a href="#ref-tikhonov1943stability">1943</a>)</span>. The ridge regression method works well in the presence of multicollinearity: when some covariate variables are highly correlated.</p>
+<p>The tuning parameter <span class="math inline">\(\lambda\)</span> is selected via cross validation while computing the estimate of <span class="math inline">\(\beta\)</span>.</p>
+</div>
+<div id="elasticnet-description" class="section level3">
+<h3><span class="header-section-number">1.1.3</span> Elastic net</h3>
+<p>it is observed that the lasso method does not work well when some covariate variables are highly correlated. However, in this particular area, ridge regression excels. Based on this observation, the elastic net method is developed combining the penalization terms of the lasso and the ridge regression, and the loss function here is
+<span class="math display">\[\begin{align*}
+L_{elnet}(\beta) = \frac{1}{2n} \| Y - X \beta \|^2_2 + \lambda \left[ ((1 - \alpha) / 2) \| \beta \|_2^2 + \alpha \| \beta \|_1 \right] .
+\end{align*}\]</span>
+Here, <span class="math inline">\(0 \le \alpha \le 1\)</span> balances the charactersitics of the lasso and the ridge regression in the elastic net formulation, and <span class="math inline">\(\lambda \ge 0\)</span> is a tuning parameter. For <span class="math inline">\(\alpha = 0\)</span>, the ealstic net formulation coincides with the ridge regression method, and <span class="math inline">\(\alpha = 1\)</span> makes the eastic net method identical to the lasso.</p>
+<p>The elastic net method was first proposed by <span class="citation">Zou and Hastie (<a href="#ref-zou2005regularization">2005</a>)</span>. What is behind the curious name <em>elastic net</em>? In the words of its authors,</p>
+<blockquote>
+<p>Similar to the lasso, the elastic net simultaneously does automatic variable selection and continuous shrinkage, and it can select groups of correlated variables. It is like a stretchable fishing net that retains ‘all the big fish’.
+— <span class="citation">Zou and Hastie (<a href="#ref-zou2005regularization">2005</a>)</span>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+</blockquote>
+<p>For moderate values of <span class="math inline">\(\alpha\)</span>, say, <span class="math inline">\(\alpha = 0.5\)</span>, the elastic net method tends to either select groups of highly correlated covariates together or discards them together.</p>
+<p>A problem that the lasso method suffers is that when <span class="math inline">\(p &gt; n\)</span>, it can select at most <span class="math inline">\(n\)</span> non-zero coefficients. This limitation may be undesirable in some high dimensional setup. The elastic net for <span class="math inline">\(\alpha &lt; 1\)</span> does not suffer from this issue.</p>
+<p>While computing the estimate of <span class="math inline">\(\beta\)</span> from the sample using the elastic net method, one may choose both the parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\lambda\)</span> through cross validation. Or, one may fix the elastic net parameter <span class="math inline">\(\alpha\)</span> at some appropriate value, and choose <span class="math inline">\(\lambda\)</span> through cross validation.</p>
+</div>
+<div id="adaptivelasso-description" class="section level3">
+<h3><span class="header-section-number">1.1.4</span> Adaptive lasso</h3>
+<p>Sometimes, the lasso method is not found to be efficient enough for variable selection, and it ends up selecting too many variables. The adaptive lasso method, proposed by <span class="citation">Zou (<a href="#ref-zou2006adaptive">2006</a>)</span>, is useful in such situations. The adaptive lasso is a two-step method, which is started with an initial estimate <span class="math inline">\(\tilde{\beta}\)</span>. Then, the loss function becomes
+<span class="math display">\[\begin{align*}
+L_{adaptive}(\beta) = \frac{1}{2n} \| Y - X \beta \|^2_2 + \lambda \sum_{i=1}^p w_i | \beta_i | ,
+\end{align*}\]</span>
+where <span class="math inline">\(w_i = \left| \tilde{\beta}_i \right|^{-\gamma}\)</span> for some <span class="math inline">\(\gamma &gt; 0\)</span>, <span class="math inline">\(i = 1, \ldots, p\)</span>, and <span class="math inline">\(\lambda \ge 0\)</span> is a tuning parameter. Note that given <span class="math inline">\(\tilde{\beta}\)</span>, <span class="math inline">\(L_{adaptive}(\beta)\)</span> is convex in <span class="math inline">\(\beta\)</span>. In fact, using a scale transformation of <span class="math inline">\(\beta\)</span> and the covariates, <span class="math inline">\(L_{adaptive}(\beta)\)</span> can be expressed in the form of the lasso loss function <span class="math inline">\(L_{lasso}(\beta)\)</span>, and hence can be solved using the algorithms developed for the lasso method. The parameter <span class="math inline">\(\gamma\)</span> is often taken to be 1 for the sake of simplicity <span class="citation">(Bühlmann and Van De Geer <a href="#ref-buhlmann2011statistics">2011</a>)</span>.</p>
+<p>Taking <span class="math inline">\(r / 0 = \infty\)</span> for <span class="math inline">\(r &gt; 0\)</span>, it follows that whenever <span class="math inline">\(\lambda &gt; 0\)</span>, for any <span class="math inline">\(\tilde{\beta}_i = 0\)</span>, we must have <span class="math inline">\(\hat{\beta}_i = 0\)</span>, where <span class="math inline">\(\hat{\beta}\)</span> is the adaptive lasso estimate. Therefore, the solution of the adaptive lasso problem is sparser than the initial estimate. Further, if for any particular <span class="math inline">\(i\)</span>, <span class="math inline">\(\tilde{\beta}_i\)</span> is large, then the adaptive lasso estimate for <span class="math inline">\(\beta_i\)</span> experiences less shrinkage due to a low value of the weight <span class="math inline">\(w_i\)</span> and corresponding low penalty. This implies low bias for the estimate of that particular <span class="math inline">\(\beta_i\)</span>.</p>
+<p>There are many ways to choose the initial estimate <span class="math inline">\(\tilde{\beta}\)</span>. When <span class="math inline">\(n &gt; p\)</span>, one can take the ordinary least squares estimate as <span class="math inline">\(\tilde{\beta}\)</span> <span class="citation">(Zou <a href="#ref-zou2006adaptive">2006</a>)</span>. When <span class="math inline">\(p \ge n\)</span>, for <span class="math inline">\(i = 1, \ldots, p\)</span>, one can take <span class="math inline">\(\tilde{\beta}_i\)</span> to be the ordinary least squares estimate for the univariate regression problem with <span class="math inline">\(Y\)</span> as the response and <span class="math inline">\(X_{\cdot i}\)</span>, the <span class="math inline">\(i\)</span>th column of <span class="math inline">\(X\)</span>, as the covariate and no intercept term. Particularly for high dimensional models or in case of variable selection problems, it is beneficial to take the lasso estimate with a cross-validated tuning parameter as <span class="math inline">\(\tilde{\beta}\)</span>, because the two-step setup of the adaptive lasso formulation then yields a sparser solution than the usual lasso estimate <span class="citation">(Bühlmann and Van De Geer <a href="#ref-buhlmann2011statistics">2011</a>)</span>.</p>
+<p>The sparsness inducing property of the adaptive lasso can be amplified by extending it to a multi-step method instead of a two-step method. Here, at each step, the weights are computed based on the estimate obtained at the last step <span class="citation">(Bühlmann and Meier <a href="#ref-buhlmann2008discussion">2008</a>)</span>.</p>
+<p>Here again, the tuning parameter <span class="math inline">\(\lambda\)</span> of the adaptive lasso can be selected via cross validation while computing the estimate.</p>
+<p>The basic idea of the adaptive lasso is of introducing weights to individual coefficients, based on which we can control the level of shrinking of those coefficients in our adaptive lasso estimate. Different customizations of the usual lasso or elastic net formulations are possible based on this concept of weight introduction.</p>
+</div>
+<div id="grouplasso-description" class="section level3">
+<h3><span class="header-section-number">1.1.5</span> Group lasso</h3>
+<p>In some situations, it is required that we either select or drop a group of covariate variables together in our model. For example, if a covariate variable is categorical in nature, its levels are represented using dummy variables. Consider the following problem for illustration. Suppose we have one categorical covariate, <span class="math inline">\(Z\)</span>, with <span class="math inline">\(K\)</span> levels <span class="math inline">\(z_1, \ldots, z_K\)</span>, and <span class="math inline">\(p\)</span> numeric covariates, which we represent using the covariate matrix <span class="math inline">\(X\)</span>. Then, our regression model is <span class="math inline">\(Y = \sum_{i=1}^K \alpha_i U_i + X \beta\)</span>, where <span class="math inline">\(U_i = 1\)</span> if <span class="math inline">\(Z = z_i\)</span> and <span class="math inline">\(0\)</span> otherwise. Naturally, we would like to either include all of the variables <span class="math inline">\(U_1, \ldots, U_K\)</span> together in the model or drop them together. But the usual lasso has no such provision.</p>
+<p>This problem is addressed by the group lasso method proposed by <span class="citation">Yuan and Lin (<a href="#ref-yuan2006model">2006</a>)</span>. Suppose the covariate variables are partitioned in <span class="math inline">\(G\)</span> groups <span class="math inline">\(X_1, \ldots, X_G\)</span>. Then, the group lasso loss function is
+<span class="math display">\[\begin{align*}
+L_{group}(\beta_1, \ldots, \beta_G) = \frac{1}{2} \left\| Y - \sum_{g=1}^G X_g \beta_g \right\|^2_2 + \lambda \sum_{g=1}^G w_g \| \beta_g \|_2 .
+\end{align*}\]</span>
+Here, <span class="math inline">\(w_g\)</span>’s are weights assigned to the groups. One may take <span class="math inline">\(w_g = 1\)</span> for all <span class="math inline">\(g\)</span>, which assigns equal weights to all the groups. However, one may also want to make larger groups less likely to be selected than a smaller group. The way to do that would be to pick a weighing scheme which assigns higher weights to larger groups. In particular, the authors <span class="citation">Yuan and Lin (<a href="#ref-yuan2006model">2006</a>)</span> recommended to take <span class="math inline">\(w_g = s_g\)</span>, where <span class="math inline">\(s_g\)</span> is the size of the <span class="math inline">\(g\)</span>th group, <span class="math inline">\(g = 1, \ldots, G\)</span>, to address this problem. We shall take <span class="math inline">\(w_g = 1\)</span> for all <span class="math inline">\(g\)</span> for the sake of simplicity. As before, <span class="math inline">\(\lambda \ge 0\)</span> is a tuning parameter.</p>
+<p>We minimize <span class="math inline">\(L_{group}(\beta_1, \ldots, \beta_G)\)</span> with respect to <span class="math inline">\(\beta_1, \ldots, \beta_G\)</span> to get the group lasso estimate. When all the group sizes are 1, the group lasso method coincides with the usual lasso method.</p>
+<p>One drawback of the ususal group lasso is that it does not induce sparsity within the groups, i.e., if a group is selected in the model, all the coefficients within the group are usually non-zero. The casue of this is the <span class="math inline">\(l_2\)</span> norm within the groups, similar to the ridge regression. This problem can be mitigated using the underlying idea of the elastic net, and modifying the group lasso loss function to
+<span class="math display">\[\begin{align*}
+L_{modgroup}(\beta_1, \ldots, \beta_G) = \frac{1}{2} \left\| Y - \sum_{g=1}^G X_g \beta_g \right\|^2_2 + \lambda \sum_{g=1}^G [ (1 - \alpha) \| \beta_g \|_2 + \alpha \| \beta_g \|_1 ] ,
+\end{align*}\]</span>
+where <span class="math inline">\(0 \le \alpha \le 1\)</span>. When <span class="math inline">\(\alpha = 1\)</span>, the modified loss function <span class="math inline">\(L_{modgroup}(\beta_1, \ldots, \beta_G)\)</span> reduces to the usual lasso loss function, yielding the usual lasso estimate.</p>
+<p>The tuning parameter <span class="math inline">\(\lambda\)</span> is selected based on cross validation. One may choose <span class="math inline">\(\alpha\)</span> either through cross validation, or may fix it beforehand.</p>
+</div>
+<div id="fusedlasso-description" class="section level3">
+<h3><span class="header-section-number">1.1.6</span> Fused lasso</h3>
+<p>Sometimes, there is a spatial or temporal structure behind the data, and we want a degree of smoothness among the adjacent coefficents. Suppose the coefficients <span class="math inline">\(\beta_i\)</span> correspond to some quantity recorded on a one dimensional grid, and we do not want <span class="math inline">\(\beta_{i+1}\)</span> and <span class="math inline">\(\beta_{i-1}\)</span> to be much different from <span class="math inline">\(\beta_i\)</span>. To achieve this goal, we may take the loss function as
+<span class="math display">\[\begin{align*}
+L_{fused}(\beta) = \frac{1}{2} \| Y - X \beta \|^2_2 + \lambda_1 \| \beta \|_1 + \lambda_2 \sum_{i=2}^p | \beta_i - \beta_{i-1} | .
+\end{align*}\]</span>
+Here, <span class="math inline">\(\lambda_1 \ge 0, \lambda_2 \ge 0\)</span> are tuning parameters. For positive <span class="math inline">\(\lambda_2\)</span>, higher differences among consecutive coefficients are penalized higher. For spatial models, the coefficients may correspond to entities on a two or higher dimensional grid, and the concept of <em>adjacent</em> coefficients is meaningful. To impose a degree of smoothness among the adjacent coefficients, we may use the loss function
+<span class="math display">\[\begin{align*}
+L_{fusedgrid}(\beta) = \frac{1}{2} \| Y - X \beta \|^2_2 + \lambda_1 \| \beta \|_1 + \lambda_2 \sum_{i, j \in A} | \beta_i - \beta_j | ,
+\end{align*}\]</span>
+where <span class="math inline">\(A\)</span> is the set of all pairs of adjacent indices. This way of penalization imposes a degree of <em>fusion</em> among the adjacent coefficients (and hence the name fused lasso).</p>
+<p>In some cases, we may not even have a regression problem, but the idea behind the fused lasso can still be applied. For example, suppose the response values are recorded on a one dimensional spatial or temporal grid, and we want to model the mean of the response variable. The mean is here a function over the grid, and we do not want much variation over adjacent grid points. To achieve that, we may take the loss function as
+<span class="math display">\[\begin{align*}
+L_{simplefused}(\beta) = \frac{1}{2} \| Y - \beta \|^2_2 + \lambda_1 \| \beta \|_1 + \lambda_2 \sum_{i=2}^p | \beta_i - \beta_{i-1} | .
+\end{align*}\]</span></p>
+<p>The methodology of fused lasso was proposed by <span class="citation">Tibshirani et al. (<a href="#ref-tibshirani2005sparsity">2005</a>)</span>.</p>
+<p>We have two tuning parameters here. Using careful arguments, some procedures for computing the fused lasso estimate reduce the problem of selecting two tuning parameters to the problem of selecting just one. Then, that one tuning parameter may be selected via cross validation. Other procedures also exist.</p>
+</div>
+<div id="otherregularizations-description" class="section level3">
+<h3><span class="header-section-number">1.1.7</span> Other regularizations</h3>
+<p>Above, we have described several types of regularizations based on variations of the penalty term in the loss function. Through combinations of the underlying ideas behind them, many other forms of regularizations are possible. However, we have also change the first term of the loss function, which is fixed to be a squared error loss in all the formulations above. Observe that the squared error loss can be interpreted as the negative of the log likelihood of a Gaussian distribution (the associated constants would not matter in the minimization problem). So, based on this idea, we can readily construct other loss functions based on the negatives of the log likelihoods of other distributions.</p>
+<p>We can also formulate such regularizations for generalized linear models, where, rather than modeling <span class="math inline">\(E[Y]\)</span> as a linear function of the covariate <span class="math inline">\(X\)</span>, we model <span class="math inline">\(g(E[Y]) = X \beta\)</span>.</p>
+<p>In any such formulations, as long as the loss function is convex in <span class="math inline">\(\beta\)</span>, solving the the minimization problem is not hard. However, some non-convex formulations also exist, but for general non-convex problems, getting the solution is computationally hard, and actually reaching the global minimum may not be guaranteed.</p>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-buhlmann2008discussion">
+<p>Bühlmann, Peter, and Lukas Meier. 2008. “Discussion: One-Step Sparse Estimates in Nonconcave Penalized Likelihood Models.” <em>Annals of Statistics</em> 36 (4): 1534–41.</p>
+</div>
+<div id="ref-buhlmann2011statistics">
+<p>Bühlmann, Peter, and Sara Van De Geer. 2011. <em>Statistics for High-Dimensional Data: Methods, Theory and Applications</em>. Springer Science &amp; Business Media.</p>
+</div>
+<div id="ref-tibshirani1996regression">
+<p>Tibshirani, Robert. 1996. “Regression Shrinkage and Selection via the Lasso.” <em>Journal of the Royal Statistical Society: Series B (Statistical Methodology)</em> 58 (1): 267–88.</p>
+</div>
+<div id="ref-tibshirani2005sparsity">
+<p>Tibshirani, Robert, Michael Saunders, Saharon Rosset, Ji Zhu, and Keith Knight. 2005. “Sparsity and Smoothness via the Fused Lasso.” <em>Journal of the Royal Statistical Society: Series B (Statistical Methodology)</em> 67 (1): 91–108.</p>
+</div>
+<div id="ref-tikhonov1943stability">
+<p>Tikhonov, Andrey Nikolayevich. 1943. “On the Stability of Inverse Problems.” In <em>Doklady Akademii Nauk Sssr</em>, 39:195–98. 5.</p>
+</div>
+<div id="ref-yuan2006model">
+<p>Yuan, Ming, and Yi Lin. 2006. “Model Selection and Estimation in Regression with Grouped Variables.” <em>Journal of the Royal Statistical Society: Series B (Statistical Methodology)</em> 68 (1): 49–67.</p>
+</div>
+<div id="ref-zou2006adaptive">
+<p>Zou, Hui. 2006. “The Adaptive Lasso and Its Oracle Properties.” <em>Journal of the American Statistical Association</em> 101 (476): 1418–29.</p>
+</div>
+<div id="ref-zou2005regularization">
+<p>Zou, Hui, and Trevor Hastie. 2005. “Regularization and Variable Selection via the Elastic Net.” <em>Journal of the Royal Statistical Society: Series B (Statistical Methodology)</em> 67 (2): 301–20.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>There is also a story behind the name <em>lasso</em>, involving an execution device and a gentle Canadian. Look up <span class="citation">Tibshirani (<a href="#ref-tibshirani2011regression">2011</a>)</span> if you are interested in the history of the lasso!<a href="regularizations-description.html#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regularizations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regularizations-demonstration.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["High-Dimensional-Data-assignments.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
